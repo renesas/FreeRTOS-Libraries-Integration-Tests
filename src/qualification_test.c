@@ -32,12 +32,20 @@
     extern int RunDeviceAdvisorDemo( void );
 #endif
 
+#if ( OTA_E2E_TEST_ENABLED == 1)
+    extern int RunOtaE2eDemo( void );
+#endif
+
 #if ( TRANSPORT_INTERFACE_TEST_ENABLED == 1 )
     #include "transport_interface_test.h"
 #endif
 
 #if ( MQTT_TEST_ENABLED == 1 )
     #include "mqtt_test.h"
+#endif
+
+#if ( OTA_PAL_TEST_ENABLED == 1 )
+    #include "ota_pal_test.h"
 #endif
 
 #if ( CORE_PKCS11_TEST_ENABLED == 1 )
@@ -58,12 +66,20 @@ void RunQualificationTest( void )
         RunDeviceAdvisorDemo();
     #endif
 
+    #if ( OTA_E2E_TEST_ENABLED == 1)
+        RunOtaE2eDemo();
+    #endif
+
     #if ( TRANSPORT_INTERFACE_TEST_ENABLED == 1 )
         RunTransportInterfaceTest();
     #endif
 
     #if ( MQTT_TEST_ENABLED == 1 )
         RunMqttTest();
+    #endif
+
+    #if ( OTA_PAL_TEST_ENABLED == 1 )
+        RunOtaPalTest();
     #endif
 
     #if ( CORE_PKCS11_TEST_ENABLED == 1 )
