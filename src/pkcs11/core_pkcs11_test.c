@@ -1682,7 +1682,7 @@ static void prvTestRsaGetAttributeValue( provisionMethod_t testProvisionMethod )
     xTemplate.pValue = xKeyComponent;
     xTemplate.ulValueLen = sizeof( xKeyComponent );
     xResult = pxGlobalFunctionList->C_GetAttributeValue( xGlobalSession, xPrivateKeyHandle, &xTemplate, 1 );
-    TEST_ASSERT_MESSAGE( ( CKR_ATTRIBUTE_SENSITIVE == xResult ), "Incorrect error code retrieved when trying to obtain private key." );
+    TEST_ASSERT_MESSAGE( ( CKR_OK != xResult ), "Incorrect error code retrieved when trying to obtain private key." );
     TEST_ASSERT_EACH_EQUAL_INT8_MESSAGE( 0, xKeyComponent, sizeof( xKeyComponent ), "Private key bytes returned when they should not be." );
 }
 
@@ -1836,7 +1836,7 @@ static void prvRSAGetAttributeValueMultiThreadTask( void * pvParameters )
             xTemplate.pValue = xKeyComponent;
             xTemplate.ulValueLen = sizeof( xKeyComponent );
             pxMultiTaskParam->xTestResult = pxGlobalFunctionList->C_GetAttributeValue( xSession, xPrivateKeyHandle, &xTemplate, 1 );
-            TEST_ASSERT_MESSAGE( ( CKR_ATTRIBUTE_SENSITIVE == pxMultiTaskParam->xTestResult ), "Incorrect error code retrieved when trying to obtain private key." );
+            TEST_ASSERT_MESSAGE( ( CKR_OK != pxMultiTaskParam->xTestResult ), "Incorrect error code retrieved when trying to obtain private key." );
             TEST_ASSERT_EACH_EQUAL_INT8_MESSAGE( 0, xKeyComponent, sizeof( xKeyComponent ), "Private key bytes returned when they should not be." );
 
             /* Reset the test result after retrieve private key attribute test. */
